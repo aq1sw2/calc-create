@@ -2,26 +2,24 @@
    <el-container>
       <el-header>
         <el-row>     
-          <el-button type="primary">主要按钮</el-button>
-          <el-button type="success">成功按钮</el-button>
+          <el-button type="primary">生成题目</el-button>
+          <el-button type="success">显示答案</el-button>
         </el-row>
       </el-header>
       <el-main> 
         <el-row>
-          <el-radio-group v-model="radio3">
-            <el-radio-button label="上海"></el-radio-button>
-            <el-radio-button label="北京"></el-radio-button>
-            <el-radio-button label="广州"></el-radio-button>
-            <el-radio-button label="深圳"></el-radio-button>
+          <el-radio-group v-model="radio1">
+            <el-radio-button label="困难"></el-radio-button>
+            <el-radio-button label="中等"></el-radio-button>
+            <el-radio-button label="简单"></el-radio-button>
           </el-radio-group>
         </el-row>
         <hr>
         <el-row>
-          <el-radio-group v-model="radio3">
-            <el-radio-button label="上海"></el-radio-button>
-            <el-radio-button label="北京"></el-radio-button>
-            <el-radio-button label="广州"></el-radio-button>
-            <el-radio-button label="深圳"></el-radio-button>
+          <el-radio-group v-model="radio2">
+            <el-radio-button label="整数"></el-radio-button>
+            <el-radio-button label="小数"></el-radio-button>
+            <el-radio-button label="分数"></el-radio-button>
           </el-radio-group>
         </el-row>
         <el-row>
@@ -29,18 +27,14 @@
           :data="tableData"
           style="width: 100%">
           <el-table-column
-            prop="date"
-            label="日期"
-            width="180">
+            prop="question"
+            label="题目"
+            >
           </el-table-column>
           <el-table-column
-            prop="name"
-            label="姓名"
-            width="180">
-          </el-table-column>
-          <el-table-column
-            prop="address"
-            label="地址">
+            prop="answer"
+            label="答案"
+            >
           </el-table-column>
         </el-table>
         </el-row>
@@ -52,24 +46,18 @@
 export default {
   data() {
     return {
-      radio: "1",
+      radio1: "1",
+      radio2: "1",
       checked: true,
       tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
+          question: '1-123+1111-123=',
+          answer: '342'
         }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
+          question: '1-123+(1111-123)=',
+          answer: '144'
         }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
+          question: '999-222-111=',
+          answer: '666'
         }]
       }
   }
