@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <!--<img src="./assets/logo.png">-->
-    <HelloWorld/>
+    <Qusetion/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/Qusetion'
+import Qusetion from './components/Qusetion'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Qusetion
   }
 }
 </script>
@@ -23,6 +23,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 </style>
