@@ -39,7 +39,7 @@
         <el-row>
         <el-table
           :data="tableData"  
-          height="250"
+          height="400"
           style="width: 100%">
           <el-table-column
             label="题目"
@@ -175,14 +175,15 @@ export default {
                 need_parentheses = true
              }
           }
-          let main_num = this.rndInt(1,defaultMax)
+          //min is 3
+          let main_num = this.rndInt(3,defaultMax)
 
           switch(parseInt(this.calcType))
           {
               case 2:
                 calc = calc + main_num + "." + this.rndInt(1,defaultMax)
                 break;
-              case 3:
+              case 3: 
                 calc = calc + this.rndInt(1,main_num-1) + "/" + main_num
                 break;
               default:
@@ -232,8 +233,8 @@ export default {
     },
     getdefaultMax :function (){
         //4:max 20 |5:max 30|6:max 40
-        let start = this.calcNum>4?(parseInt(this.calcNum)-3)*10:1
-        let end = parseInt(this.calcNum)-2)*10
+        let start = this.calcNum>4?(parseInt(this.calcNum)-3)*10:3
+        let end = (parseInt(this.calcNum)-2)*10
         let max = this.rndInt(start,end)
         return max
     },
