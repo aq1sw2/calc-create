@@ -89,7 +89,7 @@ export default {
       //  alert(arr)
       //  var arr = this.tableData[1].question.split(/[^\d/]/)
       // alert(arr.length)
-      //  alert(arr)
+      alert("敬请期待")
     },
     createList:function(){
 
@@ -232,7 +232,9 @@ export default {
     },
     getdefaultMax :function (){
         //4:max 20 |5:max 30|6:max 40
-        let max = this.rndInt(1,(parseInt(this.calcNum)-2)*10)
+        let start = this.calcNum>4?(parseInt(this.calcNum)-3)*10:1
+        let end = parseInt(this.calcNum)-2)*10
+        let max = this.rndInt(start,end)
         return max
     },
     getParenthese :function (){
