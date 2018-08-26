@@ -95,7 +95,6 @@ export default {
 
       this.tableData = new Array()
       //setting from UI
-      let defaultMax = this.getdefaultMax()
       let parentheses = this.getParenthese() 
 
       //anyway,create 10 question everytime
@@ -103,12 +102,12 @@ export default {
       for (let i=0;i<count;i++)
       { 
           let date = {}
-          date.question = this.createQ(defaultMax,parentheses)
+          date.question = this.createQ(parentheses)
           date.answer = this.createA(date.question)
           this.tableData.push(date) 
       }
     },
-    createQ:function(defaultMax,parentheses){
+    createQ:function(parentheses){
       
       //init operator
       //1 +  2 -  3 * 4 /
@@ -166,6 +165,7 @@ export default {
       let calc = ""
       for (let i=0;i<this.calcNum;i++)
       { 
+          let defaultMax = this.getdefaultMax()
           //left parentheses
           if (i<this.calcNum-1)
           {
