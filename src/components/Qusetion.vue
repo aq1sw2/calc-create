@@ -64,7 +64,7 @@
 
 <script>
 //import {Formula} from '../plugin/formula.js'
-
+import {reductionofAFraction} from '../plugin/fractions.js'
 export default {
   data() {
     return {
@@ -184,7 +184,9 @@ export default {
                 calc = calc + main_num + "." + this.rndInt(1,defaultMax)
                 break;
               case 3: 
-                calc = calc + this.rndInt(1,main_num-1) + "/" + main_num
+                let fraction =reductionofAFraction({numerator:this.rndInt(1,main_num-1),denominator:main_num}
+) 
+                calc = calc + fraction.numerator + "/" + fraction.denominator
                 break;
               default:
                 calc = calc+main_num

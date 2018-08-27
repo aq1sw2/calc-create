@@ -1,5 +1,5 @@
 
-export { addition,subaddition,multiplication,division }
+export {addition,subaddition,multiplication,division,reductionofAFraction}
 /**
  * 取两个数的最大公因数
  * @param {Number} n1 数1
