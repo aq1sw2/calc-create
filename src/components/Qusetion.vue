@@ -241,7 +241,7 @@ export default {
         return max
     },
     getParenthese :function (){
-        let parentheses = parseInt(this.calcNum)%3-1
+        let parentheses = parseInt(this.calcNum)%3
         return parentheses
     },
     getPrintOper:function(operator)
