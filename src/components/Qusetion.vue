@@ -3,7 +3,8 @@
       <el-header>
         <el-row>     
           <el-button type="primary" @click="createList">生成题目</el-button>
-          <el-button type="success" @click="reverseMessage">显示答案</el-button>
+          <!--<el-button type="success" @click="reverseMessage">显示答案</el-button>-->
+          <el-button type="success">{{cost|times}}</el-button>
         </el-row>
       </el-header>
       <el-main> 
@@ -68,6 +69,7 @@ import {reductionofAFraction} from '../plugin/fractions.js'
 export default {
   data() {
     return {
+      cost:0,
       calcNum: "4",
       calcType: "1",
       tableData: [{
@@ -82,6 +84,15 @@ export default {
         }]
       }
   },
+  filters: 
+  {
+      times:function (value) {
+          let hours = parseInt(value/3600)
+          let minutes = parseInt((value - 3600*hours)/60)
+          let seconds = value - 3600*hours - 60*minutes
+          return '耗时:'+hours + '时' + minutes + '分' +seconds+ '秒'
+      }
+  },
   methods:{
     reverseMessage: function () {
       // var arr = this.tableData[1].question.split(/\+|-|×|÷/)
@@ -92,6 +103,8 @@ export default {
       alert("敬请期待")
     },
     createList:function(){
+      //clear cost
+      this.cost = 0
 
       this.tableData = new Array()
       //setting from UI
@@ -265,14 +278,25 @@ export default {
     }
   },
   mounted: function () {
-  this.$nextTick(function () {
-    // Code that will run only after the
-    // entire view has been rendered
-    // this is code is used for show fraction
-    //var formula=new Formula();
-    //formula.processAll();
-  })
-} 
+    this.$nextTick(function () {
+      // Code that will run only after the
+      // entire view has been rendered
+      // this is code is used for show fraction
+      //var formula=new Formula();
+      //formula.processAll();
+      var _this = this
+      this.timer = setInterval(
+        function(){
+          _this.cost++
+        },
+      1000)
+    })
+  },
+  beforeDestroy: function () {
+    if(this.timer){  
+       clearInterval(this.timer);
+    }
+  }
 };
 </script>
 
