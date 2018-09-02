@@ -4,7 +4,7 @@
         <el-row>     
           <el-button type="primary" @click="createList">生成题目</el-button>
           <!--<el-button type="success" @click="reverseMessage">显示答案</el-button>-->
-          <el-button type="success">{{cost|times}}</el-button>
+          <el-button type="success">耗时:{{cost|times}}</el-button>
         </el-row>
       </el-header>
       <el-main> 
@@ -14,6 +14,9 @@
           <div name='equation' fontsize='12'>3x+4=12,4y+5=3x-6,dz+3=9</div>
         </el-row>
         -->
+        <el-row>
+          <el-tag type="danger">玩耍的日子，剩余:{{leftTime|dates}}</el-tag>
+        </el-row>
         <el-row>
           <el-radio-group v-model="calcNum">
             <el-radio-button label="6">困难</el-radio-button>
@@ -69,7 +72,9 @@ import {reductionofAFraction} from '../plugin/fractions.js'
 export default {
   data() {
     return {
+      start:0,
       cost:0,
+      leftTime:0,
       calcNum: "4",
       calcType: "1",
       tableData: [{
@@ -86,14 +91,50 @@ export default {
   },
   filters: 
   {
+      dates:function (value) {
+          let days =  parseInt(value/1000/60/60/24)
+          let hours = parseInt(value/1000/60/60%24)
+          let minutes = parseInt(value/1000/60%60)
+          let seconds = parseInt(value/1000%60)
+          let msecs = parseInt(value%1000)
+          //return days + '天'+hours + '时' + minutes + '分' +seconds+ '秒'+msecs
+          return days + '天'+hours + '时' + minutes + '分' +seconds+ '秒'
+      },
       times:function (value) {
-          let hours = parseInt(value/3600)
-          let minutes = parseInt((value - 3600*hours)/60)
-          let seconds = value - 3600*hours - 60*minutes
-          return '耗时:'+hours + '时' + minutes + '分' +seconds+ '秒'
+          let hours = parseInt(value/1000/60/60%24)
+          let minutes = parseInt(value/1000/60%60)
+          let seconds = parseInt(value/1000%60)
+          let msecs = parseInt(value%1000)
+          //return hours + '时' + minutes + '分' +seconds+ '秒'+msecs
+          return hours + '时' + minutes + '分' +seconds+ '秒'
       }
   },
   methods:{
+    countdown:function()
+    {
+       let endDate = new Date()
+       endDate.setFullYear(2023,8,1)
+       endDate.setHours(0,0,0,0)
+       return endDate- new Date()
+    },
+    countup:function()
+    {  
+       if(this.start >0)
+       {
+         return new Date()-this.start
+       }else
+       {
+         return 0
+       }
+    },
+    // padding:function (value,len)
+    // {
+    //     let sv = String(value)
+    //     while(sv.length<len){
+    //         sv = '0' + sv
+    //     }
+    //     return sv
+    // },
     reverseMessage: function () {
       // var arr = this.tableData[1].question.split(/\+|-|×|÷/)
       // alert(arr.length)
@@ -104,7 +145,7 @@ export default {
     },
     createList:function(){
       //clear cost
-      this.cost = 0
+      this.start = new Date()
 
       this.tableData = new Array()
       //setting from UI
@@ -287,8 +328,10 @@ export default {
       var _this = this
       this.timer = setInterval(
         function(){
-          _this.cost++
+          _this.cost = _this.countup()
+          _this.leftTime = _this.countdown()
         },
+      //1)
       1000)
     })
   },
