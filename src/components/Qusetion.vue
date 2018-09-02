@@ -13,10 +13,10 @@
           <span name='frac' fontsize='12' >2/15</span><span fontsize='10'>+1</span>
           <div name='equation' fontsize='12'>3x+4=12,4y+5=3x-6,dz+3=9</div>
         </el-row>
-        -->
+        
         <el-row>
           <el-tag type="danger">玩耍的日子，剩余:{{leftTime|dates}}</el-tag>
-        </el-row>
+        </el-row>-->
         <el-row>
           <el-radio-group v-model="calcNum">
             <el-radio-button label="6">困难</el-radio-button>
@@ -78,7 +78,7 @@ export default {
       calcNum: "4",
       calcType: "1",
       tableData: [{
-          question: "1/22-6",
+          question: '1/22-6',
           answer: '342'
         }, {
           question: '1/2+2/3×2÷7',
@@ -284,8 +284,7 @@ export default {
         return weight
     },
     rndInt :function (n, m){
-        let random = Math.floor(Math.random()*(m-n+1)+n)
-        return random
+        return  Math.floor(Math.random()*(m-n+1)+n)
     },
     getdefaultMax :function (){
         //4:max 20 |5:max 30|6:max 40
@@ -295,8 +294,7 @@ export default {
         return max
     },
     getParenthese :function (){
-        let parentheses = parseInt(this.calcNum)%3
-        return parentheses
+        return parseInt(this.calcNum)-3
     },
     getPrintOper:function(operator)
     {   
