@@ -166,9 +166,22 @@ export default {
       //init operator
       //1 +  2 -  3 * 4 /
       let operator = new Array()
-      for (let i=0;i<this.calcNum-2;i++)
+      let simleft = this.calcNum-2
+      let minoperator = 1
+      for (let i=0;i<this.calcNum-1;i++)
       { 
-          operator.push(this.rndInt(1,4))
+          if(simleft == 0)
+          {
+            minoperator = 3
+          }
+
+          let oper = this.rndInt(minoperator,4);
+
+          if(oper<3)
+          {
+            simleft--
+          } 
+          operator.push(oper)
       }
       //init operator weight
       let weight = new Array()
